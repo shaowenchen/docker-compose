@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq_management
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"

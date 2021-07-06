@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    phpldapadmin:
+        container_name: "phpldapadmin"
+        image: "osixia/phpldapadmin:latest"
+        environment:
+          PHPLDAPADMIN_HTTPS: "false"
+        ports:
+          - '10080:80'
