@@ -2,10 +2,8 @@ version: '2'
 
 services:
   redis:
-    image: redis
+    image: redis:6
     restart: always
-    command: redis-server /usr/local/etc/redis/redis.conf
-    volumes:
-      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server --requirepass 123456
     ports:
       - "6379:6379"

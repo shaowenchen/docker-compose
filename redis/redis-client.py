@@ -1,7 +1,7 @@
 import redis
  
 # connect to Redis
-server = redis.Redis(host="127.0.0.1", port=6379)
+server = redis.Redis(host="127.0.0.1", password="123456", port=6379)
  
 server.ping()
 # should return True
