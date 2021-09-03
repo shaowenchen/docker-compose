@@ -1,0 +1,12 @@
+version: '2.0'
+
+services:
+  nginx:
+    restart: always
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./cert:/usr/local/nginx/cert
