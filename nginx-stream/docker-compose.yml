@@ -1,0 +1,10 @@
+version: '2.0'
+
+services:
+  nginx:
+    restart: always
+    image: tekn0ir/nginx-stream
+    ports:
+      - 5000:5000
+    volumes:
+      - ./stream:/opt/nginx/stream.conf.d
