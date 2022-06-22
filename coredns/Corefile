@@ -1,0 +1,8 @@
+.:53 {
+    hosts {
+        1.2.3.4 test.chenshaowen.com
+        fallthrough
+    }
+    forward . 8.8.8.8:53 9.9.9.9
+    log
+}
