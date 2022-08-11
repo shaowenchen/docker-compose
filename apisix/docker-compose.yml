@@ -8,6 +8,8 @@ services:
     - ./config/dashboard.yaml:/usr/local/apisix-dashboard/conf/conf.yaml
     ports:
     - "9000:9000"
+    networks:
+      - apisix
 
   apisix:
     image: apache/apisix:2.14.1-alpine
