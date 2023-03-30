@@ -1,0 +1,4 @@
+FROM node:18.15
+COPY . .
+RUN npm i
+CMD ["npm", "run", "dev"]

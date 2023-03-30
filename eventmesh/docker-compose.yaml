@@ -27,15 +27,26 @@ services:
   depends_on:
    - rmqnamesrv
  eventmesh:
-  image: eventmesh/eventmesh:v1.4.0
+  image: shaowenchen/eventmesh:latest
   container_name: eventmesh
   restart: always
   ports:
    - "10000:10000"
    - "10105:10105"
+   - "10106:10106"
+   - "19090:19090"
   volumes:
-    - ./data/eventmesh.properties:/data/app/eventmesh/conf/eventmesh.properties
-    - ./data/rocketmq-client.properties:/data/app/eventmesh/conf/rocketmq-client.properties
+    - ./conf/eventmesh.properties:/data/app/eventmesh/conf/eventmesh.properties
+    - ./conf/rocketmq-client.properties:/data/app/eventmesh/conf/rocketmq-client.properties
+    - ./data/eventmesh/logs:/data/app/eventmesh/logs
   depends_on:
     - rmqnamesrv
     - rmqbroker
+ eventmesh-dashboard:
+  image: shaowenchen/eventmesh-dashboard:latest
+  container_name: eventmesh-dashboard
+  restart: always
+  ports:
+   - "3000:3000"
+  depends_on:
+    - eventmesh
