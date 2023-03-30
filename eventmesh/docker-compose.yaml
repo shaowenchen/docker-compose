@@ -1,0 +1,41 @@
+version: '3'
+services:
+ rmqnamesrv:
+  image: apache/rocketmq:4.9.4
+  container_name: rmqnamesrv
+  restart: always
+  ports:
+   - "9876:9876"
+   - "7999:7999"
+  command: sh mqnamesrv
+  volumes:
+   - ./data/namesrv/logs:/root/logs
+   - ./data/namesrv/store:/root/store
+ rmqbroker:
+  image: apache/rocketmq:4.9.4
+  container_name: rmqbroker
+  restart: always
+  ports:
+   - "10911:10911"
+   - "10909:10909"
+  command: sh mqbroker -c ../conf/broker.conf
+  environment:
+   - NAMESRV_ADDR=namesrv:9876
+  volumes:
+   - ./data/broker/logs:/root/logs
+   - ./data/broker/store:/root/store
+  depends_on:
+   - rmqnamesrv
+ eventmesh:
+  image: eventmesh/eventmesh:v1.4.0
+  container_name: eventmesh
+  restart: always
+  ports:
+   - "10000:10000"
+   - "10105:10105"
+  volumes:
+    - ./data/eventmesh.properties:/data/app/eventmesh/conf/eventmesh.properties
+    - ./data/rocketmq-client.properties:/data/app/eventmesh/conf/rocketmq-client.properties
+  depends_on:
+    - rmqnamesrv
+    - rmqbroker
