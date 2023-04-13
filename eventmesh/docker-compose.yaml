@@ -34,6 +34,7 @@ services:
    - "10000:10000"
    - "10105:10105"
    - "10106:10106"
+   - "10205:10205"
    - "19090:19090"
   volumes:
     - ./conf/eventmesh.properties:/data/app/eventmesh/conf/eventmesh.properties
