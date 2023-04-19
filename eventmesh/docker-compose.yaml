@@ -9,8 +9,8 @@ services:
    - "7999:7999"
   command: sh mqnamesrv
   volumes:
-   - ./data/namesrv/logs:/root/logs
-   - ./data/namesrv/store:/root/store
+   - ./logs/namesrv:/root/logs
+   - ./data/namesrv:/root/store
  rmqbroker:
   image: apache/rocketmq:4.9.4
   container_name: rmqbroker
@@ -22,8 +22,8 @@ services:
   environment:
    - NAMESRV_ADDR=namesrv:9876
   volumes:
-   - ./data/broker/logs:/root/logs
-   - ./data/broker/store:/root/store
+   - ./logs/broker:/root/logs
+   - ./data/broker:/root/store
   depends_on:
    - rmqnamesrv
  eventmesh:
@@ -39,7 +39,7 @@ services:
   volumes:
     - ./conf/eventmesh.properties:/data/app/eventmesh/conf/eventmesh.properties
     - ./conf/rocketmq-client.properties:/data/app/eventmesh/conf/rocketmq-client.properties
-    - ./data/eventmesh/logs:/data/app/eventmesh/logs
+    - ./logs/eventmesh:/data/app/eventmesh/logs
   depends_on:
     - rmqnamesrv
     - rmqbroker
@@ -48,6 +48,6 @@ services:
   container_name: eventmesh-dashboard
   restart: always
   ports:
-   - "3000:3000"
+   - "80:80"
   depends_on:
     - eventmesh
