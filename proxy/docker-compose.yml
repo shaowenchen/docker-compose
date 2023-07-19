@@ -3,7 +3,7 @@ version: '2.0'
 services:
   nginx:
     restart: always
-    image: shaowenchen/nginx-stream:v1
+    image: hubimage/demo-nginx-stream:latest
     ports:
       - 443:443
     volumes:
