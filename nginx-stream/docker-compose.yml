@@ -5,7 +5,7 @@ version: '2.0'
 services:
   nginx:
     restart: always
-    image: shaowenchen/demo-nginx-stream:latest
+    image: tekn0ir/nginx-stream:latest
     ports:
       - 5000:5000
     volumes:
